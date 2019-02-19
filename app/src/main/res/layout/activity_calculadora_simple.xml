@@ -6,17 +6,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginEnd="0dp"
-    android:background="@drawable/Background"
+    android:background="@drawable/background"
     tools:context=".Calculadora_simple"
     tools:layout_editor_absoluteY="25dp">
-
     <Button
         android:id="@+id/btn_F"
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:layout_marginStart="60dp"
         android:layout_marginTop="18dp"
-        android:background="@drawable/button_F"
+        android:background="@drawable/button_f"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_1" />
 
@@ -223,8 +222,8 @@
         android:layout_marginStart="18dp"
         android:layout_marginTop="18dp"
         android:layout_marginEnd="18dp"
-        android:background="@drawable/Textview_big"
-        android:editable="false"
+        android:background="@drawable/textview_big"
+        android:clickable="false"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
@@ -238,9 +237,9 @@
         android:layout_marginStart="18dp"
         android:layout_marginTop="18dp"
         android:layout_marginEnd="18dp"
-        android:background="@drawable/Textview_small"
-        android:editable="false"
+        android:background="@drawable/textview_small"
         android:ems="10"
+        android:clickable="false"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.503"
@@ -256,4 +255,5 @@
         android:layout_marginTop="18dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_small" />
+
 </android.support.constraint.ConstraintLayout>
