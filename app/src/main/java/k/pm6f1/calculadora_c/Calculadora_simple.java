@@ -1,5 +1,6 @@
 package k.pm6f1.calculadora_c;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,10 +13,11 @@ import k.pm6f1.calculadora_c.Models.data;
 public class Calculadora_simple extends AppCompatActivity {
     //Vars declaration
     int value1, value2;
+    public String operation;
     public data object= new data();
     //Views declaration
     EditText et_big, et_small;
-    Button btn_c,btn_back, btn_plus, btn_equal,
+    Button btn_c,btn_back, btn_plus, btn_equal, btn_f,
             btn_0,btn_1, btn_2,btn_3,btn_4,btn_5,btn_6,
             btn_7,btn_8,btn_9;
     @Override
@@ -25,7 +27,8 @@ public class Calculadora_simple extends AppCompatActivity {
         //relating views with code, setting onClickListener when it's necesary
         et_big=findViewById(R.id.et_big);
         et_small=findViewById(R.id.et_small);
-
+        btn_f=findViewById(R.id.btn_F);
+        btn_f.setOnClickListener(f_activity);
         btn_back= findViewById(R.id.btn_back);
         //Faltan muchos botones de operaciones por agregar
         btn_plus= findViewById(R.id.btn_plus);
@@ -119,25 +122,10 @@ public class Calculadora_simple extends AppCompatActivity {
     };
     private View.OnClickListener suma = new View.OnClickListener(){
         public void onClick(View v) {
-                    int val=Integer.valueOf(
-                    et_big.getText().toString());
-                    String introduced_txt=et_big.getText().toString();
 
+            save_value();
+            operation="suma";
 
-
-            if (isNumeric(introduced_txt) == true) {
-
-                object.setValue_1(val);
-                et_small.setText(Integer.toString(object.getValue_1()));
-
-                Toast.makeText(getApplicationContext(), "Added value 1: "+object.getValue_1(), Toast.LENGTH_SHORT).show();
-                et_big.setText("");
-
-
-            } else {
-                Toast.makeText(getApplicationContext(), "Viejo lesbiano",Toast.LENGTH_SHORT).show();
-
-            }
         }
     };
     public static boolean isNumeric(String cadena) {
@@ -168,8 +156,22 @@ public class Calculadora_simple extends AppCompatActivity {
                 et_small.setText(Integer.toString(object.getValue_1()));
 
                 Toast.makeText(getApplicationContext(), "Added value 2 & 1: "+object.getValue_1() + "," +object.getValue_2(), Toast.LENGTH_SHORT).show();
-                et_big.setText(Integer.toString(object.getValue_2()+object.getValue_1()));
 
+                if(operation.equals("suma")) {
+                    et_big.setText(Integer.toString(object.getValue_2() + object.getValue_1()));
+                }
+                if (operation.equals("resta")){
+                    et_big.setText(Integer.toString(object.getValue_2() - object.getValue_2()));
+                }
+                if (operation.equals("multi")){
+                    et_big.setText(Integer.toString(
+                            object.getValue_2()* object.getValue_1()));
+                }
+
+                if (operation.equals("divi")){
+                    et_big.setText(Integer.toString(
+                            object.getValue_2()* object.getValue_1()));
+                }
 
 
             } else {
@@ -178,6 +180,38 @@ public class Calculadora_simple extends AppCompatActivity {
             }
         }
     };
+
+    public View.OnClickListener f_activity=new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent activity_f=new Intent(getApplicationContext(), Cientific_calculator.class);
+            startActivity(activity_f);
+        }
+    };
+    public boolean save_value(){
+                boolean result;
+                int val=Integer.valueOf(
+                        et_big.getText().toString());
+                String introduced_txt=et_big.getText().toString();
+
+                if (isNumeric(introduced_txt) == true) {
+
+
+                    object.setValue_1(val);
+                    et_small.setText(Integer.toString(object.getValue_1()));
+
+                    Toast.makeText(getApplicationContext(), "Added value 1: "+object.getValue_1(), Toast.LENGTH_SHORT).show();
+                    et_big.setText("");
+                    result=true;
+
+                } else {
+                    Toast.makeText(getApplicationContext(), "Viejo lesbiano",Toast.LENGTH_SHORT).show();
+                    result= false;
+                }
+         return result;
+    }
+
+
 }
 
 
