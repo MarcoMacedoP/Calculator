@@ -17,9 +17,12 @@ public class Calculadora_simple extends AppCompatActivity {
     public data object= new data();
     //Views declaration
     EditText et_big, et_small;
-    Button btn_c,btn_back, btn_plus, btn_equal, btn_f,
-            btn_0,btn_1, btn_2,btn_3,btn_4,btn_5,btn_6,
+    //numbers buttons
+    Button btn_0,btn_1, btn_2,btn_3,btn_4,btn_5,btn_6,
             btn_7,btn_8,btn_9;
+    //functions buttons
+    Button btn_c,btn_back, btn_plus, btn_equal, btn_f, btn_less, btn_x, btn_div;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,6 +38,14 @@ public class Calculadora_simple extends AppCompatActivity {
         btn_plus.setOnClickListener(suma);
         btn_equal= findViewById(R.id.btn_equal);
         btn_equal.setOnClickListener(igual);
+        btn_less= findViewById(R.id.btn_less);
+        btn_less.setOnClickListener(less);
+        btn_x= findViewById(R.id.btn_x);
+        btn_x.setOnClickListener(multi);
+        btn_div=findViewById(R.id.btn_div);
+        btn_div.setOnClickListener(div);
+
+
         //numbers buttons
         btn_0=findViewById(R.id.btn_0);
         btn_0.setOnClickListener(numero_cero);
@@ -80,6 +91,8 @@ public class Calculadora_simple extends AppCompatActivity {
 
         }
     };
+
+    //programacion de los botones
     private View.OnClickListener numero_dos = new View.OnClickListener() {
         public void onClick(View v) {
             et_big.setText("2");
@@ -120,15 +133,9 @@ public class Calculadora_simple extends AppCompatActivity {
             et_big.setText("9");
         }
     };
-    private View.OnClickListener suma = new View.OnClickListener(){
-        public void onClick(View v) {
 
-            save_value();
-            operation="suma";
 
-        }
-    };
-    public static boolean isNumeric(String cadena) {
+        public static boolean isNumeric(String cadena) {
 
         boolean resultado;
 
@@ -170,7 +177,7 @@ public class Calculadora_simple extends AppCompatActivity {
 
                 if (operation.equals("divi")){
                     et_big.setText(Integer.toString(
-                            object.getValue_2()* object.getValue_1()));
+                            object.getValue_2()/ object.getValue_1()));
                 }
 
 
@@ -188,6 +195,44 @@ public class Calculadora_simple extends AppCompatActivity {
             startActivity(activity_f);
         }
     };
+
+
+    //Operations, send a value to String operation that is going to be compared in the equal method.
+    public View.OnClickListener less= new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            save_value();
+            operation="resta";
+
+        }
+    };
+    public View.OnClickListener multi= new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            save_value();
+            operation="multi";
+
+        }
+    };
+    public View.OnClickListener div= new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            save_value();
+             operation="divi";
+
+        }
+    };
+
+    private View.OnClickListener suma = new View.OnClickListener(){
+        public void onClick(View v) {
+
+            save_value();
+            operation="suma";
+
+        }
+    };
+
+
     public boolean save_value(){
                 boolean result;
                 int val=Integer.valueOf(
