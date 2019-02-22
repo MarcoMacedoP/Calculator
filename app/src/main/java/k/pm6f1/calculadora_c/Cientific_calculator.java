@@ -23,12 +23,15 @@ public class Cientific_calculator extends AppCompatActivity {
     //Button numbers
     Button btn_0,btn_1, btn_2,btn_3,btn_4,btn_5,btn_6,
             btn_7,btn_8,btn_9;
+    //resources
+    Toast Error_mesage;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cientific_calculator);
+        Error_mesage= Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT);
         et_big= findViewById(R.id.et_big2);
         et_small=findViewById(R.id.et_small2);
 
@@ -91,6 +94,8 @@ public class Cientific_calculator extends AppCompatActivity {
         btn_8.setOnClickListener(numero_ocho);
         btn_9.setOnClickListener(numero_nueve);
 
+
+
     }
 
 
@@ -98,14 +103,14 @@ public class Cientific_calculator extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 save_value();
-                operation = "resta";
+                operation = "-";
             }
         };
         public View.OnClickListener multi = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 save_value();
-                operation = "multi";
+                operation = "*";
 
             }
         };
@@ -113,7 +118,7 @@ public class Cientific_calculator extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 save_value();
-                operation = "divi";
+                operation = "/";
 
             }
         };
@@ -122,7 +127,7 @@ public class Cientific_calculator extends AppCompatActivity {
             public void onClick(View v) {
 
                 save_value();
-                operation = "suma";
+                operation = "+";
 
             }
         };
@@ -241,78 +246,56 @@ public class Cientific_calculator extends AppCompatActivity {
     public View.OnClickListener igual= new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            try{
+                switch (operation){//Operation methods
+                    //scientific cases "reciproc", "root", "log",
+                    // "ln", "ex", and "10x" don't need to be her
+                    //they act by themself in the OnClick Method
+                    case "+" :
+                        save_value2();
+                        result= object.value_1+ object.value_2;
+                        et_big.setText(String.valueOf(result));
+                        break;
+                    case "-":
+                        save_value2();
+                        result= object.value_1 - object.value_2;
+                        et_big.setText(String.valueOf(result));
+                        break;
+                    case "*":
+                        save_value2();
+                        result= object.value_1 * object.value_2;
+                        et_big.setText(String.valueOf(result));
+                        break;
+                    case "/":
+                        save_value2();
+                        result= object.value_1/object.value_2;
+                        et_big.setText(String.valueOf(result));
+                        break;
+                    case "yx":
+                        save_value2();
+                        result=Math.pow(object.getValue_1(),object.getValue_2());
+                        et_big.setText(String.valueOf(result));
+                        break;
+                    case "enesim":
+                        save_value2();
+                        result =Math.pow(object.getValue_1(), 1.0/object.getValue_2());//insert operation here
+                        et_big.setText(String.valueOf(result));
+                        break;
 
-            String introduced_txt=et_big.getText().toString();
 
-            if (isNumeric(introduced_txt)) {
-
-                if(operation.equals("suma")) {
-                    save_value2();
-                    et_big.setText(Integer.toString(object.getValue_2() + object.getValue_1()));
-                }
-                if (operation.equals("resta")){
-                    save_value2();
-                    et_big.setText(Integer.toString(object.getValue_2() - object.getValue_2()));
-                }
-                if (operation.equals("multi")){
-                    save_value2();
-                    et_big.setText(Integer.toString(
-                            object.getValue_2()* object.getValue_1()));
+                    default:
+                        et_big.setText("");
+                        break;
                 }
 
-                if (operation.equals("divi")){
-                    save_value2();
-                    et_big.setText(Integer.toString(
-                            object.getValue_2() / object.getValue_1()));
-                }
-                if(operation.equals("yx")){
-                    save_value2();
-                    result=Math.pow(object.getValue_1(),object.getValue_2());;//insert operation here
-                    et_big.setText(Double.toString(result));
-                }
-                if(operation.equals("reciproc")){
-                    result=1/object.getValue_1();
-                    et_big.setText(Double.toString(result));
             }
-                if(operation.equals("root")){
-                    result=Math.sqrt(object.getValue_1());//insert operation here
-                    et_big.setText(Double.toString(result));
-                }
-
-                //Math.pow(16,1.0/4)=2
-                if(operation.equals("enesim")){
-                    save_value2();
-                    result =Math.pow(object.getValue_1(), 1.0/object.getValue_2());//insert operation here
-                    et_big.setText(Double.toString(result));
-                }
-                if(operation.equals("log")){
-                    result= (Math.log10(object.getValue_1()) / Math.log10(10));//insert operation here
-                    et_big.setText(Double.toString(result));
-                }
-                if(operation.equals("ln")){
-                    double e = 2.718282;
-                    result= (Math.log10(object.getValue_1()) / Math.log10(e));//insert operation here
-                    et_big.setText(Double.toString(result));
-                }
-                if(operation.equals("ex")){
-                    double e = 2.718282;
-                    result=Math.pow(e, object.getValue_1());//insert operation here
-                    et_big.setText(Double.toString(result));
-                }
-                if(operation.equals("10x")){
-                    result=(Math.pow(10, object.getValue_1()));
-                    //insert operation here
-                    et_big.setText(Double.toString(result));
-                }
-
-            } else {
-                Toast.makeText(getApplicationContext(), "Viejo lesbiano",Toast.LENGTH_SHORT).show();
-
+            catch (Exception e){
+                Error_mesage.show();
             }
         }
     };
 
-    public boolean save_value2(){
+    public void save_value2(){
         boolean result;
         int val=Integer.valueOf(
                 et_big.getText().toString());
@@ -331,7 +314,7 @@ public class Cientific_calculator extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Viejo lesbiano",Toast.LENGTH_SHORT).show();
             result= false;
         }
-        return result;
+        //return result;
     }
 
 
