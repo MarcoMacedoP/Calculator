@@ -147,6 +147,7 @@ public class Cientific_calculator extends AppCompatActivity {
                 try {
                     //save_value();
                     result = 1 / 4;
+
                     Toast.makeText(getApplicationContext(), ""+ result, Toast.LENGTH_SHORT).show();
 
 
@@ -231,7 +232,7 @@ public class Cientific_calculator extends AppCompatActivity {
 
 
             object.setValue_1(val);
-            et_small.setText(Integer.toString(object.getValue_1()));
+            et_small.setText(String.valueOf(object.getValue_1()));
 
             Toast.makeText(getApplicationContext(), "Added value 1: "+object.getValue_1(), Toast.LENGTH_SHORT).show();
             et_big.setText("");
@@ -304,7 +305,7 @@ public class Cientific_calculator extends AppCompatActivity {
         if (isNumeric(introduced_txt) == true) {
 
             object.setValue_2(val);
-            et_small.setText(Integer.toString(object.getValue_1()));
+            et_small.setText(String.valueOf(object.getValue_1()));
 
             Toast.makeText(getApplicationContext(), "Added value 2 & 1: "+object.getValue_1() + "," +object.getValue_2(), Toast.LENGTH_SHORT).show();
 
