@@ -77,6 +77,8 @@ public class Calculadora_simple extends AppCompatActivity {
         btn_9=findViewById(R.id.btn_9);
         btn_9.setOnClickListener(numero_nueve);
     }
+
+    //bottom programation
     private View.OnClickListener numero_cero = new View.OnClickListener() {
         public void onClick(View v) {
             et_big.setText("0");
@@ -84,15 +86,9 @@ public class Calculadora_simple extends AppCompatActivity {
     };
     private View.OnClickListener numero_uno = new View.OnClickListener() {
         public void onClick(View v) {
-
-
             et_big.setText("1");
-
-
-        }
+            }
     };
-
-    //programacion de los botones
     private View.OnClickListener numero_dos = new View.OnClickListener() {
         public void onClick(View v) {
             et_big.setText("2");

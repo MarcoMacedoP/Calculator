@@ -1,0 +1,35 @@
+[33mcommit 0f5dff5f506b0d3e6d98991b22b214c12f6e9f7f[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;33mtag: 0.22[m[33m)[m
+Author: Marco Antonio Macedo Preciado <marcosiegman01@gmail.com>
+Date:   Wed Feb 20 14:27:51 2019 -0600
+
+    cientific opcions, basic
+
+[33mcommit 300c6260459d48d6e6e773996543ec42b9bde245[m[33m ([m[1;33mtag: 0.21[m[33m, [m[1;32mBugs[m[33m)[m
+Author: Marco Antonio Macedo Preciado <marcosiegman01@gmail.com>
+Date:   Wed Feb 20 12:55:33 2019 -0600
+
+    Operaciones basicas funcionando
+
+[33mcommit d1ab5065372d139eed91355b262d5735ef8bd427[m[33m ([m[1;31morigin/Bugs[m[33m)[m
+Author: Marco Antonio Macedo Preciado <marcosiegman01@gmail.com>
+Date:   Tue Feb 19 16:34:58 2019 -0600
+
+    Suma funcionando
+
+[33mcommit 39fd4a947c743857c29209eb8b71d304c2357291[m
+Author: Marco Antonio Macedo Preciado <marcosiegman01@gmail.com>
+Date:   Tue Feb 19 04:51:35 2019 -0600
+
+    Solving trouble with interface, in progress
+
+[33mcommit c76f180870d55f06c6a7fcf5e7d5106031f5205e[m[33m ([m[1;33mtag: 0.2[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: Marco Antonio Macedo Preciado <marcosiegman01@gmail.com>
+Date:   Tue Feb 19 03:33:36 2019 -0600
+
+    Plus added correctly
+
+[33mcommit 20605401a77f238eef31e0b5c75223d03e860dfa[m[33m ([m[1;33mtag: 0.1[m[33m)[m
+Author: Marco Antonio Macedo Preciado <marcosiegman01@gmail.com>
+Date:   Tue Feb 19 00:51:32 2019 -0600
+
+    Interface of first activity
