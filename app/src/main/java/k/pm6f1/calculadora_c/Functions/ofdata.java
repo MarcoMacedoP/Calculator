@@ -37,4 +37,43 @@ public class ofdata {
         }
 
     }
+    public String add_numbers(char option_selected, String EditText_value){
+        switch (option_selected){
+            case '0':
+                EditText_value+="0";
+                break;
+            case '1':
+                EditText_value+="1";
+                break;
+            case '2':
+                EditText_value+="2";
+                break;
+            case '3':
+                EditText_value+="3";
+                break;
+            case '4':
+                EditText_value+="4";
+                break;
+            case '5':
+                EditText_value+="5";
+                break;
+            case '6':
+                EditText_value+="6";
+                break;
+            case '7':
+                EditText_value+="7";
+                break;
+            case '8':
+                EditText_value+="8";
+                break;
+            case '9':
+                EditText_value+="9";
+                break;
+            case '.':
+                EditText_value+=".";
+        }
+
+        return EditText_value;
+    }
+
 }

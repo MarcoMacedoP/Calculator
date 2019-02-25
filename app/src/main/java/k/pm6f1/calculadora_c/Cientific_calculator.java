@@ -7,6 +7,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import k.pm6f1.calculadora_c.Functions.ofdata;
 import k.pm6f1.calculadora_c.Models.data;
 
 public class Cientific_calculator extends AppCompatActivity {
@@ -14,8 +15,10 @@ public class Cientific_calculator extends AppCompatActivity {
     EditText et_big, et_small;
     //Variables utilizadas
     String operation;
-    public data object= new data();
     public double result;
+    //Objects utilizaded
+    public data object= new data();
+    public ofdata data_functions= new ofdata();
     //functions buttons
     Button btn_c,btn_back, btn_plus, btn_equal, btn_f, btn_less, btn_x, btn_div;
     //scientic buttons
@@ -96,6 +99,12 @@ public class Cientific_calculator extends AppCompatActivity {
 
 
 
+    }
+
+    public void add_input(char input_type){
+        String EditText_Value=et_big.getText().toString();
+        EditText_Value= data_functions.add_numbers(input_type,EditText_Value);
+        et_big.setText(EditText_Value);
     }
 
 
@@ -312,54 +321,65 @@ public class Cientific_calculator extends AppCompatActivity {
 
 
     //bottom programation
+    
     private View.OnClickListener numero_cero = new View.OnClickListener() {
         public void onClick(View v) {
-            et_big.setText("0");
+            char input='0';
+            add_input(input);
         }
     };
     private View.OnClickListener numero_uno = new View.OnClickListener() {
         public void onClick(View v) {
-            et_big.setText("1");
+            char input='1';
+            add_input(input);
         }
     };
     private View.OnClickListener numero_dos = new View.OnClickListener() {
         public void onClick(View v) {
-            et_big.setText("2");
+            char input='2';
+            add_input(input);
         }
     };
     private View.OnClickListener numero_tres = new View.OnClickListener() {
         public void onClick(View v) {
-            et_big.setText("3");
+            char input='3';
+            add_input(input);
         }
     };
     private View.OnClickListener numero_cuatro = new View.OnClickListener() {
         public void onClick(View v) {
-            et_big.setText("4");
+            char input='4';
+            add_input(input);
         }
     };
     private View.OnClickListener numero_cinco = new View.OnClickListener() {
         public void onClick(View v) {
-            et_big.setText("5");
+            char input='5';
+            add_input(input);
         }
     };
     private View.OnClickListener numero_seis = new View.OnClickListener() {
         public void onClick(View v) {
-            et_big.setText("6");
+            char input='6';
+            add_input(input);
         }
     };
     private View.OnClickListener numero_siete = new View.OnClickListener() {
         public void onClick(View v) {
-            et_big.setText("7");
+            char input='7';
+            add_input(input);
         }
     };
     private View.OnClickListener numero_ocho = new View.OnClickListener() {
         public void onClick(View v) {
-            et_big.setText("8");
+            char input='8';
+            add_input(input);
         }
     };
     private View.OnClickListener numero_nueve = new View.OnClickListener() {
         public void onClick(View v) {
-            et_big.setText("9");
+            char input='9';
+            add_input(input);
         }
     };
 }
