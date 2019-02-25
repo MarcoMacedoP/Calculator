@@ -25,7 +25,7 @@ public class Calculadora_simple extends AppCompatActivity {
     Button btn_0, btn_1, btn_2, btn_3, btn_4, btn_5, btn_6,
             btn_7, btn_8, btn_9;
     //functions buttons
-    Button btn_c, btn_back, btn_plus, btn_equal, btn_f, btn_less, btn_x, btn_div;
+    Button btn_c, btn_back, btn_plus, btn_equal, btn_f, btn_less, btn_x, btn_div, btn_dot, btn_clean, btn_del;
 
 
     @Override
@@ -37,7 +37,7 @@ public class Calculadora_simple extends AppCompatActivity {
         et_small = findViewById(R.id.et_small);
         btn_f = findViewById(R.id.btn_F);
         btn_f.setOnClickListener(f_activity);
-        btn_back = findViewById(R.id.btn_back);
+        btn_back = findViewById(R.id.btn_delete);
         //Faltan muchos botones de operaciones por agregar
         btn_plus = findViewById(R.id.btn_plus);
         btn_plus.setOnClickListener(suma);
@@ -49,7 +49,12 @@ public class Calculadora_simple extends AppCompatActivity {
         btn_x.setOnClickListener(multi);
         btn_div = findViewById(R.id.btn_div);
         btn_div.setOnClickListener(div);
-
+        btn_dot=findViewById(R.id.btn_dot);
+        btn_dot.setOnClickListener(dot);
+        btn_clean=findViewById(R.id.btn_c);
+        btn_clean.setOnClickListener(clean);
+        btn_del=findViewById(R.id.btn_delete);
+        btn_del.setOnClickListener(del);
 
         //numbers buttons
         btn_0 = findViewById(R.id.btn_0);
@@ -91,7 +96,26 @@ public class Calculadora_simple extends AppCompatActivity {
         }
     };
 
+    public View.OnClickListener clean = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            data_functions.clean(et_big, et_small);
+        }
+    };
+    public View.OnClickListener del = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            try{
+                String actual_EditText=et_big.getText().toString();
+                actual_EditText= data_functions.remove(actual_EditText);
+                et_big.setText(actual_EditText);
+                Toast.makeText(getApplicationContext(), "Bien",Toast.LENGTH_SHORT).show();
+            }catch (Exception e){
+                Toast.makeText(getApplicationContext(), "Mal",Toast.LENGTH_SHORT).show();
+            }
 
+        }
+    };
     //Operations, send a value to String operation that is going to be compared in the equal method.
     public View.OnClickListener less = new View.OnClickListener() {
         @Override
@@ -265,6 +289,13 @@ public class Calculadora_simple extends AppCompatActivity {
     private View.OnClickListener numero_nueve = new View.OnClickListener() {
         public void onClick(View v) {
             char input='9';
+            add_input(input);
+        }
+    };
+    public View.OnClickListener dot = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            char input='.';
             add_input(input);
         }
     };

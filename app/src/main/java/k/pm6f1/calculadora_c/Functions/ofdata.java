@@ -3,6 +3,8 @@ package k.pm6f1.calculadora_c.Functions;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.lang.reflect.Array;
+
 import k.pm6f1.calculadora_c.Models.data;
 
 public class ofdata {
@@ -76,4 +78,18 @@ public class ofdata {
         return EditText_value;
     }
 
-}
+    public void clean(EditText et, EditText et2){
+        et.setText("");
+        et2.setText("");
+    }
+    public String remove(String old_val){
+        String new_val="";
+        char [] chars_of_value= old_val.toCharArray();
+        for (int i=0; i <(chars_of_value.length-1); i++){
+            new_val+= chars_of_value[i];
+        }
+
+        return new_val;
+    }
+
+    }

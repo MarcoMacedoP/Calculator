@@ -1,5 +1,6 @@
 package k.pm6f1.calculadora_c;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -20,7 +21,7 @@ public class Cientific_calculator extends AppCompatActivity {
     public data object= new data();
     public ofdata data_functions= new ofdata();
     //functions buttons
-    Button btn_c,btn_back, btn_plus, btn_equal, btn_f, btn_less, btn_x, btn_div;
+    Button btn_c,btn_back, btn_plus, btn_equal, btn_f, btn_less, btn_x, btn_div, btn_dot,btn_del, btn_clean;
     //scientic buttons
     Button btn_yx_2, btn_reciproc, btn_root, btn_enesim, btn_log, btn_ln, btn_ex, btn_10x; //Faltan botones
     //Button numbers
@@ -39,19 +40,25 @@ public class Cientific_calculator extends AppCompatActivity {
         et_small=findViewById(R.id.et_small2);
 
         btn_c=findViewById(R.id.small_btn_c);
-        btn_back=findViewById(R.id.small_btn_back);
+        btn_back=findViewById(R.id.small_btn_delete);
         btn_plus=findViewById(R.id.small_btn_more);
         btn_equal=findViewById(R.id.small_btn_equals);
         btn_f=findViewById(R.id.small_btn_f);
         btn_less=findViewById(R.id.small_btn_less);
         btn_x=findViewById(R.id.small_btn_x);
         btn_div=findViewById(R.id.small_btn_div);
+        btn_dot=findViewById(R.id.small_btn_dot);
+        btn_del=findViewById(R.id.small_btn_delete);
+        btn_f = findViewById(R.id.small_btn_f);
 
         btn_plus.setOnClickListener(suma);
         btn_equal.setOnClickListener(igual);
         btn_less.setOnClickListener(less);
         btn_x.setOnClickListener(multi);
         btn_div.setOnClickListener(div);
+        btn_dot.setOnClickListener(dot);
+        btn_del.setOnClickListener(del);
+        btn_f.setOnClickListener(f_activity);
 
         //btn_yx_2, btn_reciproc, btn_root, btn_enesim, btn_log, btn_ln, btn_ex, btn_10x;
         btn_yx_2=findViewById(R.id.small_btn_yx_2);
@@ -100,12 +107,41 @@ public class Cientific_calculator extends AppCompatActivity {
 
 
     }
+    public View.OnClickListener f_activity = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            Intent activity_f = new Intent(getApplicationContext(), Calculadora_simple.class);
+            startActivity(activity_f);
+        }
+    };
+
+    public View.OnClickListener del = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            try{
+                String actual_EditText=et_big.getText().toString();
+                actual_EditText= data_functions.remove(actual_EditText);
+                et_big.setText(actual_EditText);
+                Toast.makeText(getApplicationContext(), "Bien",Toast.LENGTH_SHORT).show();
+            }catch (Exception e){
+                Toast.makeText(getApplicationContext(), "Mal",Toast.LENGTH_SHORT).show();
+            }
+
+        }
+    };
 
     public void add_input(char input_type){
         String EditText_Value=et_big.getText().toString();
         EditText_Value= data_functions.add_numbers(input_type,EditText_Value);
         et_big.setText(EditText_Value);
     }
+
+        public View.OnClickListener clean = new View.OnClickListener() {
+            @Override
+             public void onClick(View v) {
+                   data_functions.clean(et_big, et_small);
+            }
+        };
 
 
         public View.OnClickListener less = new View.OnClickListener() {
@@ -321,7 +357,7 @@ public class Cientific_calculator extends AppCompatActivity {
 
 
     //bottom programation
-    
+
     private View.OnClickListener numero_cero = new View.OnClickListener() {
         public void onClick(View v) {
             char input='0';
@@ -379,6 +415,13 @@ public class Cientific_calculator extends AppCompatActivity {
     private View.OnClickListener numero_nueve = new View.OnClickListener() {
         public void onClick(View v) {
             char input='9';
+            add_input(input);
+        }
+    };
+    public View.OnClickListener dot = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            char input='.';
             add_input(input);
         }
     };
