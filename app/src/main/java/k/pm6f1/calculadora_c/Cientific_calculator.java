@@ -102,14 +102,14 @@ public class Cientific_calculator extends AppCompatActivity {
         public View.OnClickListener less = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                save_value();
+                save_value(1);
                 operation = "-";
             }
         };
         public View.OnClickListener multi = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                save_value();
+                save_value(1);
                 operation = "*";
 
             }
@@ -117,7 +117,7 @@ public class Cientific_calculator extends AppCompatActivity {
         public View.OnClickListener div = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                save_value();
+                save_value(1);
                 operation = "/";
 
             }
@@ -126,7 +126,7 @@ public class Cientific_calculator extends AppCompatActivity {
         private View.OnClickListener suma = new View.OnClickListener() {
             public void onClick(View v) {
 
-                save_value();
+                save_value(1);
                 operation = "+";
 
             }
@@ -136,7 +136,7 @@ public class Cientific_calculator extends AppCompatActivity {
         public View.OnClickListener yx = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                save_value();
+                save_value(1);
                 operation = "yx";
 
             }
@@ -145,11 +145,11 @@ public class Cientific_calculator extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    //save_value();
-                    result = 1 / 4;
+                    save_value(1);
+                    result = 1.00 / object.value_1;
 
                     Toast.makeText(getApplicationContext(), ""+ result, Toast.LENGTH_SHORT).show();
-
+                    et_big.setText(String.valueOf(result));
 
                     operation = "reciproc";
                 } catch(Exception e){
@@ -161,7 +161,7 @@ public class Cientific_calculator extends AppCompatActivity {
         public View.OnClickListener root = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                save_value();
+                save_value(1);
                 result=Math.sqrt(object.getValue_1());//insert operation here
                 et_big.setText(Double.toString(result));
                 operation = "root";
@@ -170,7 +170,7 @@ public class Cientific_calculator extends AppCompatActivity {
         public View.OnClickListener enesim = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                save_value();
+                save_value(1);
                 operation = "enesim";
 
             }
@@ -178,7 +178,10 @@ public class Cientific_calculator extends AppCompatActivity {
         public View.OnClickListener log = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                save_value();
+                save_value(1);
+                result= Math.log10(object.value_1);
+                Toast.makeText(getApplicationContext(), ""+ result, Toast.LENGTH_SHORT).show();
+                et_big.setText(String.valueOf(result));
                 operation = "log";
 
             }
@@ -186,7 +189,10 @@ public class Cientific_calculator extends AppCompatActivity {
         public View.OnClickListener ln = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                save_value();
+                save_value(1);
+                result= Math.log(object.value_1);
+                Toast.makeText(getApplicationContext(), ""+ result, Toast.LENGTH_SHORT).show();
+                et_big.setText(String.valueOf(result));
                 operation = "ln";
 
             }
@@ -194,7 +200,11 @@ public class Cientific_calculator extends AppCompatActivity {
         public View.OnClickListener Ex = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                save_value();
+                double e=Math.E;
+                save_value(1);
+                result= Math.pow(e,object.value_1);
+                Toast.makeText(getApplicationContext(), ""+ result, Toast.LENGTH_SHORT).show();
+                et_big.setText(String.valueOf(result));
                 operation = "ex";
 
             }
@@ -202,48 +212,20 @@ public class Cientific_calculator extends AppCompatActivity {
         public View.OnClickListener tenx = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                save_value();
+                save_value(1);
+                result= Math.pow(10,object.value_1);
+                Toast.makeText(getApplicationContext(), ""+ result, Toast.LENGTH_SHORT).show();
+                et_big.setText(String.valueOf(result));
                 operation = "10x";
 
             }
         };
 
 
-    public static boolean isNumeric(String cadena) {
-
-        boolean resultado;
-
-        try {
-            Integer.parseInt(cadena);
-            resultado = true;
-        } catch (NumberFormatException excepcion) {
-            resultado = false;
-        }
-
-        return resultado;
-    }
-    public boolean save_value(){
-        boolean result;
-        int val=Integer.valueOf(
-                et_big.getText().toString());
-        String introduced_txt=et_big.getText().toString();
-
-        if (isNumeric(introduced_txt) == true) {
 
 
-            object.setValue_1(val);
-            et_small.setText(String.valueOf(object.getValue_1()));
 
-            Toast.makeText(getApplicationContext(), "Added value 1: "+object.getValue_1(), Toast.LENGTH_SHORT).show();
-            et_big.setText("");
-            result=true;
 
-        } else {
-            Toast.makeText(getApplicationContext(), "Viejo lesbiano",Toast.LENGTH_SHORT).show();
-            result= false;
-        }
-        return result;
-    }
     public View.OnClickListener igual= new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -252,34 +234,34 @@ public class Cientific_calculator extends AppCompatActivity {
                     //scientific cases "reciproc", "root", "log",
                     // "ln", "ex", and "10x" don't need to be her
                     //they act by themself in the OnClick Method
-                    case "+" :
-                        save_value2();
-                        result= object.value_1+ object.value_2;
+                    case "+":
+                        save_value(2);
+                        result = object.value_1 + object.value_2;
                         et_big.setText(String.valueOf(result));
                         break;
                     case "-":
-                        save_value2();
-                        result= object.value_1 - object.value_2;
+                        save_value(2);
+                        result = object.value_1 - object.value_2;
                         et_big.setText(String.valueOf(result));
                         break;
                     case "*":
-                        save_value2();
-                        result= object.value_1 * object.value_2;
+                        save_value(2);
+                        result = object.value_1 * object.value_2;
                         et_big.setText(String.valueOf(result));
                         break;
                     case "/":
-                        save_value2();
-                        result= object.value_1/object.value_2;
+                        save_value(2);
+                        result = object.value_1 / object.value_2;
                         et_big.setText(String.valueOf(result));
                         break;
                     case "yx":
-                        save_value2();
-                        result=Math.pow(object.getValue_1(),object.getValue_2());
+                        save_value(2);
+                        result=Math.pow(object.value_1,object.value_2 );
                         et_big.setText(String.valueOf(result));
                         break;
                     case "enesim":
-                        save_value2();
-                        result =Math.pow(object.getValue_1(), 1.0/object.getValue_2());//insert operation here
+                        save_value(2);
+                        result =Math.pow(object.value_2, (1/object.value_1));//i THANK YO MATH IV
                         et_big.setText(String.valueOf(result));
                         break;
 
@@ -296,26 +278,36 @@ public class Cientific_calculator extends AppCompatActivity {
         }
     };
 
-    public void save_value2(){
-        boolean result;
-        int val=Integer.valueOf(
-                et_big.getText().toString());
-        String introduced_txt=et_big.getText().toString();
+    public void save_value(int val_number) {
+        try {
+            double actual_val = Double.valueOf(et_big.getText().toString());
 
-        if (isNumeric(introduced_txt) == true) {
+            switch (val_number) {
 
-            object.setValue_2(val);
-            et_small.setText(String.valueOf(object.getValue_1()));
+                case 1:
 
-            Toast.makeText(getApplicationContext(), "Added value 2 & 1: "+object.getValue_1() + "," +object.getValue_2(), Toast.LENGTH_SHORT).show();
+                    object.setValue_1(actual_val);
+                    et_small.setText(String.valueOf(object.getValue_1()));
+                    et_big.setText("");
+                    Toast.makeText(getApplicationContext(), "Added value 1: " + object.getValue_1(), Toast.LENGTH_SHORT).show();
+                    break;
+                case 2:
+                    object.setValue_2(actual_val);
+                    et_small.setText(String.valueOf(object.getValue_1()));
+                    et_big.setText("");
+                    Toast.makeText(getApplicationContext(), "Added value 2: " + object.getValue_2(), Toast.LENGTH_SHORT).show();
 
-            result=true;
-
-        } else {
-            Toast.makeText(getApplicationContext(), "Viejo lesbiano",Toast.LENGTH_SHORT).show();
-            result= false;
+                    break;
+                default:
+                    //ins
+                    break;
+            }
         }
-        //return result;
+        catch(Exception e){
+            Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
+
+        }
+
     }
 
 
