@@ -14,7 +14,7 @@ public class Calculadora_simple extends AppCompatActivity {
     //Vars declaration
     int value1, value2;
     public String operation;
-    float result;
+    double result;
     public data object = new data();
     //Views declaration
     EditText et_big, et_small;
@@ -93,7 +93,7 @@ public class Calculadora_simple extends AppCompatActivity {
     public View.OnClickListener less = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            save_value();
+            save_value(1);
             operation = "-";
 
         }
@@ -101,7 +101,7 @@ public class Calculadora_simple extends AppCompatActivity {
     public View.OnClickListener multi = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            save_value();
+            save_value(1);
             operation = "*";
 
         }
@@ -109,8 +109,8 @@ public class Calculadora_simple extends AppCompatActivity {
     public View.OnClickListener div = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            save_value();
-            operation = "-";
+            save_value(1);
+            operation = "/";
 
         }
     };
@@ -118,14 +118,93 @@ public class Calculadora_simple extends AppCompatActivity {
     private View.OnClickListener suma = new View.OnClickListener() {
         public void onClick(View v) {
 
-            save_value();
+            save_value(1);
             operation = "+";
 
         }
     };
 
 
-    //bottom programation
+
+
+    public View.OnClickListener igual = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            try{
+                switch (operation) {//Operation methods
+
+                case "+":
+                    save_value(2);
+                    result = object.value_1 + object.value_2;
+                    et_big.setText(String.valueOf(result));
+                    break;
+                case "-":
+                    save_value(2);
+                    result = object.value_1 - object.value_2;
+                    et_big.setText(String.valueOf(result));
+                    break;
+                case "*":
+                    save_value(2);
+                    result = object.value_1 * object.value_2;
+                    et_big.setText(String.valueOf(result));
+                    break;
+                case "/":
+                    save_value(2);
+                    result = object.value_1 / object.value_2;
+                    et_big.setText(String.valueOf(result));
+                    break;
+                default:
+                    et_big.setText("");
+                    break;
+            }
+
+            }
+            catch (Exception e){
+                et_big.setText("");
+            }
+            }
+        };
+
+
+        public void save_value(int val_number) {
+           try {
+               double actual_val = Double.valueOf(et_big.getText().toString());
+
+               switch (val_number) {
+
+                   case 1:
+
+                       object.setValue_1(actual_val);
+                       et_small.setText(String.valueOf(object.getValue_1()));
+                       et_big.setText("");
+                       Toast.makeText(getApplicationContext(), "Added value 1: " + object.getValue_1(), Toast.LENGTH_SHORT).show();
+                       break;
+                   case 2:
+                       object.setValue_2(actual_val);
+                       et_small.setText(String.valueOf(object.getValue_1()));
+                       et_big.setText("");
+                       Toast.makeText(getApplicationContext(), "Added value 2: " + object.getValue_2(), Toast.LENGTH_SHORT).show();
+
+                       break;
+                   default:
+                       //ins
+                       break;
+               }
+            }
+           catch(Exception e){
+               Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
+
+           }
+
+        }
+
+
+
+
+
+
+
+        //bottom programation
     private View.OnClickListener numero_cero = new View.OnClickListener() {
         public void onClick(View v) {
             et_big.setText("0");
@@ -176,108 +255,6 @@ public class Calculadora_simple extends AppCompatActivity {
             et_big.setText("9");
         }
     };
-
-
-    public static boolean isNumeric(String cadena) {
-
-        boolean resultado;
-
-        try {
-            Integer.parseInt(cadena);
-            resultado = true;
-        } catch (NumberFormatException excepcion) {
-            resultado = false;
-        }
-
-        return resultado;
-    }
-
-    public View.OnClickListener igual = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            try{
-                switch (operation) {//Operation methods
-                //scientific cases "reciproc", "root", "log",
-                // "ln", "ex", and "10x" don't need to be her
-                //they act by themself in the OnClick Method
-                case "+":
-                    save_value2();
-                    result = object.value_1 + object.value_2;
-                    et_big.setText(String.valueOf(result));
-                    break;
-                case "-":
-                    save_value2();
-                    result = object.value_1 - object.value_2;
-                    et_big.setText(String.valueOf(result));
-                    break;
-                case "*":
-                    save_value2();
-                    result = object.value_1 * object.value_2;
-                    et_big.setText(String.valueOf(result));
-                    break;
-                case "/":
-                    save_value2();
-                    result = object.value_1 / object.value_2;
-                    et_big.setText(String.valueOf(result));
-                    break;
-                default:
-                    et_big.setText("");
-                    break;
-            }
-
-            }
-            catch (Exception e){
-                et_big.setText("");
-            }
-            }
-        };
-
-
-        public void save_value() {
-
-            int val = Integer.valueOf(
-                    et_big.getText().toString());
-            String introduced_txt = et_big.getText().toString();
-
-            if (isNumeric(introduced_txt)) {
-
-
-                object.setValue_1(val);
-                et_small.setText(String.valueOf(object.getValue_1()));
-
-                Toast.makeText(getApplicationContext(), "Added value 1: " + object.getValue_1(), Toast.LENGTH_SHORT).show();
-                et_big.setText("");
-
-
-            } else {
-                Toast.makeText(getApplicationContext(), "Viejo lesbiano", Toast.LENGTH_SHORT).show();
-
-            }
-
-        }
-
-        public void save_value2() {
-
-            int val = Integer.valueOf(
-                    et_big.getText().toString());
-            String introduced_txt = et_big.getText().toString();
-
-            if (isNumeric(introduced_txt)) {
-
-                object.setValue_2(val);
-                et_small.setText(String.valueOf(object.getValue_1()));
-
-                Toast.makeText(getApplicationContext(), "Added value 2 & 1: " + object.getValue_1() + "," + object.getValue_2(), Toast.LENGTH_SHORT).show();
-            }
-            else {
-                Toast.makeText(getApplicationContext(), "Viejo lesbiano", Toast.LENGTH_SHORT).show();
-
-                }
-            //return result;
-        }
-
-
-
 }
 
 
