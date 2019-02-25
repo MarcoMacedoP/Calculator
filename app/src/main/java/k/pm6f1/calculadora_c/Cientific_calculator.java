@@ -50,6 +50,8 @@ public class Cientific_calculator extends AppCompatActivity {
         btn_dot=findViewById(R.id.small_btn_dot);
         btn_del=findViewById(R.id.small_btn_delete);
         btn_f = findViewById(R.id.small_btn_f);
+        btn_clean=findViewById(R.id.small_btn_c);
+
 
         btn_plus.setOnClickListener(suma);
         btn_equal.setOnClickListener(igual);
@@ -59,7 +61,7 @@ public class Cientific_calculator extends AppCompatActivity {
         btn_dot.setOnClickListener(dot);
         btn_del.setOnClickListener(del);
         btn_f.setOnClickListener(f_activity);
-
+        btn_clean.setOnClickListener(clean);
         //btn_yx_2, btn_reciproc, btn_root, btn_enesim, btn_log, btn_ln, btn_ex, btn_10x;
         btn_yx_2=findViewById(R.id.small_btn_yx_2);
         btn_reciproc=findViewById(R.id.small_btn_xsurprised);
